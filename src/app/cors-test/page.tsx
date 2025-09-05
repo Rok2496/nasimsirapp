@@ -69,7 +69,7 @@ export default function CorsTest() {
           <h3 className="text-lg font-semibold text-yellow-800 mb-2">CORS Test Information</h3>
           <p className="text-yellow-700">
             This test checks if the frontend can directly communicate with the backend API.
-            If there are CORS issues, you'll see errors in the browser console.
+            If there are CORS issues, you&apos;ll see errors in the browser console.
           </p>
         </div>
       </div>

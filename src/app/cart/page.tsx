@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Product } from '@/types';
 import { publicApi } from '@/lib/api';
 
@@ -182,10 +183,12 @@ export default function CartPage() {
                   {/* Product Image */}
                   <div className="w-full md:w-48 h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center">
                     {item.product.images && item.product.images.length > 0 ? (
-                      <img
+                      <Image
                         src={`http://localhost:8000${item.product.images[0]}`}
                         alt={item.product.name || 'Product image'}
-                        className="w-full h-full object-cover rounded-xl"
+                        width={192}
+                        height={192}
+                        className="w-full h-full object-contain rounded-xl"
                       />
                     ) : (
                       <svg className="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
