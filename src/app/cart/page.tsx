@@ -184,7 +184,7 @@ export default function CartPage() {
                   <div className="w-full md:w-48 h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center">
                     {item.product.images && item.product.images.length > 0 ? (
                       <Image
-                        src={`http://localhost:8000${item.product.images[0]}`}
+                        src={`${API_BASE_URL}${item.product.images[0]}`}
                         alt={item.product.name || 'Product image'}
                         width={192}
                         height={192}
@@ -459,3 +459,21 @@ export default function CartPage() {
     </div>
   );
 }
+
+// Determine the API base URL
+const getApiBaseUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    // Client-side runtime
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      return process.env.NEXT_PUBLIC_API_URL;
+    }
+    // Default to Render deployment in production
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://nasimsir.onrender.com';
+    }
+  }
+  // Server-side or fallback
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();

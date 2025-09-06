@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { publicApi } from '@/lib/api';
 
 export default function CorsTest() {
   const [result, setResult] = useState<string>('');
@@ -11,28 +12,15 @@ export default function CorsTest() {
     setResult('Testing CORS...');
     
     try {
-      console.log('Testing CORS with direct fetch');
-      const response = await fetch('http://localhost:8000/api/chat/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: 'Hello, CORS test',
-          session_id: 'cors-test-session',
-          language: 'en'
-        }),
+      console.log('Testing CORS with API service');
+      const response = await publicApi.sendChatMessage({
+        message: 'Hello, CORS test',
+        session_id: 'cors-test-session',
+        language: 'en'
       });
       
-      console.log('CORS test response status:', response.status);
-      const data = await response.json();
-      console.log('CORS test response data:', data);
-      
-      if (response.ok) {
-        setResult(`CORS test success: ${JSON.stringify(data, null, 2)}`);
-      } else {
-        setResult(`CORS test error: ${response.status} - ${JSON.stringify(data)}`);
-      }
+      console.log('CORS test response data:', response);
+      setResult(`CORS test success: ${JSON.stringify(response, null, 2)}`);
     } catch (error) {
       console.error('CORS test error:', error);
       setResult(`CORS test error: ${error instanceof Error ? error.message : 'Unknown error'}`);

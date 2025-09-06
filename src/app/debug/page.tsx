@@ -30,34 +30,21 @@ export default function DebugPage() {
 
   const testDirectFetch = async () => {
     setLoading(true);
-    setTestResult('Testing direct fetch...');
+    setTestResult('Testing API service...');
     
     try {
-      console.log('Testing direct fetch to backend...');
-      const response = await fetch('http://localhost:8000/api/chat/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: 'Hello, this is a direct test message',
-          session_id: 'direct-debug-session',
-          language: 'en'
-        }),
+      console.log('Testing API service...');
+      const response = await publicApi.sendChatMessage({
+        message: 'Hello, this is a direct test message',
+        session_id: 'direct-debug-session',
+        language: 'en'
       });
       
-      console.log('Direct fetch response status:', response.status);
-      const data = await response.json();
-      console.log('Direct fetch response data:', data);
-      
-      if (response.ok) {
-        setTestResult(`Direct fetch success: ${JSON.stringify(data, null, 2)}`);
-      } else {
-        setTestResult(`Direct fetch error: ${response.status} - ${JSON.stringify(data)}`);
-      }
+      console.log('API service response data:', response);
+      setTestResult(`API service success: ${JSON.stringify(response, null, 2)}`);
     } catch (error) {
-      console.error('Direct fetch error:', error);
-      setTestResult(`Direct fetch error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error('API service error:', error);
+      setTestResult(`API service error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
