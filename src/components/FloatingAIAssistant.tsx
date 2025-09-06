@@ -227,22 +227,22 @@ export default function FloatingAIAssistant() {
           </div>
           
           {/* Input Form */}
-          <div className="p-6 bg-white/80 backdrop-blur-sm border-t border-white/20">
-            <form onSubmit={handleChatSubmit} className="flex gap-3">
+          <div className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border-t border-white/20">
+            <form onSubmit={handleChatSubmit} className="flex gap-2 sm:gap-3">
               <input
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Ask me anything..."
-                className="flex-1 p-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white text-slate-800 placeholder-slate-500 shadow-sm"
+                className="flex-1 p-2 sm:p-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white text-slate-800 placeholder-slate-500 shadow-sm"
                 disabled={chatLoading}
               />
               <button
                 type="submit"
                 disabled={chatLoading || !chatInput.trim()}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-xl hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 sm:p-3 rounded-xl hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </button>

@@ -422,3 +422,22 @@ html {
 .quantum-flicker {
   animation: quantumFlicker 4s ease-in-out infinite;
 }
+
+/* Responsive improvements for mobile */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .p-responsive {
+    padding: 0.5rem;
+  }
+  
+  .m-responsive {
+    margin: 0.5rem;
+  }
+  
+  .rounded-responsive {
+    border-radius: 0.5rem;
+  }
+}

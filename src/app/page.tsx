@@ -105,10 +105,6 @@ export default function Home() {
                 </h1>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
               </div>
-              <div className="ml-3 flex flex-col">
-                <span className="text-sm font-medium text-slate-600">Adapting the Future</span>
-                <span className="text-xs text-slate-400">Interactive Smart Solutions</span>
-              </div>
             </div>
             <div className="flex items-center space-x-6">
               <div className="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-emerald-50 to-blue-50 px-4 py-2 rounded-full border border-emerald-200">

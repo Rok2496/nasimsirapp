@@ -307,9 +307,9 @@ export default function CartPage() {
       {/* Checkout Modal */}
       {showCheckout && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Checkout
               </h2>
               <button
@@ -322,8 +322,8 @@ export default function CartPage() {
               </button>
             </div>
             
-            <form onSubmit={handleOrderSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleOrderSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">Full Name *</label>
                   <input
@@ -331,7 +331,7 @@ export default function CartPage() {
                     required
                     value={orderForm.full_name}
                     onChange={(e) => setOrderForm({...orderForm, full_name: e.target.value})}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -343,7 +343,7 @@ export default function CartPage() {
                     required
                     value={orderForm.email}
                     onChange={(e) => setOrderForm({...orderForm, email: e.target.value})}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -355,7 +355,7 @@ export default function CartPage() {
                     required
                     value={orderForm.phone}
                     onChange={(e) => setOrderForm({...orderForm, phone: e.target.value})}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                     placeholder="Enter your phone number"
                   />
                 </div>
@@ -366,7 +366,7 @@ export default function CartPage() {
                     type="text"
                     value={orderForm.city}
                     onChange={(e) => setOrderForm({...orderForm, city: e.target.value})}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                     placeholder="Enter your city"
                   />
                 </div>
@@ -378,7 +378,7 @@ export default function CartPage() {
                   required
                   value={orderForm.address}
                   onChange={(e) => setOrderForm({...orderForm, address: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                   rows={3}
                   placeholder="Enter your full address"
                 ></textarea>
@@ -390,7 +390,7 @@ export default function CartPage() {
                   type="text"
                   value={orderForm.country}
                   onChange={(e) => setOrderForm({...orderForm, country: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                   placeholder="Enter your country"
                 />
               </div>
@@ -400,7 +400,7 @@ export default function CartPage() {
                 <textarea
                   value={orderForm.special_requirements}
                   onChange={(e) => setOrderForm({...orderForm, special_requirements: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                   rows={3}
                   placeholder="Any special requirements or notes"
                 ></textarea>
@@ -411,20 +411,20 @@ export default function CartPage() {
                 <textarea
                   value={orderForm.delivery_address}
                   onChange={(e) => setOrderForm({...orderForm, delivery_address: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
                   rows={3}
                   placeholder="Leave blank to use address above"
                 ></textarea>
               </div>
               
               {/* Order Summary in Modal */}
-              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-6 border border-slate-200">
-                <h3 className="text-lg font-bold text-slate-800 mb-4">Order Summary</h3>
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-4 sm:p-6 border border-slate-200">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4">Order Summary</h3>
                 <div className="space-y-2">
                   {cartItems.map((item) => (
                     <div key={item.product.id} className="flex justify-between">
-                      <span className="text-slate-600">{item.product.name} × {item.quantity}</span>
-                      <span className="font-semibold">${((item.product.price || 0) * item.quantity).toLocaleString()}</span>
+                      <span className="text-slate-600 text-sm sm:text-base">{item.product.name} × {item.quantity}</span>
+                      <span className="font-semibold text-sm sm:text-base">${((item.product.price || 0) * item.quantity).toLocaleString()}</span>
                     </div>
                   ))}
                   <div className="border-t border-slate-300 pt-2 mt-2">
@@ -436,18 +436,18 @@ export default function CartPage() {
                 </div>
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   type="button"
                   onClick={() => setShowCheckout(false)}
-                  className="flex-1 bg-slate-200 text-slate-700 py-4 rounded-xl font-semibold hover:bg-slate-300 transition-colors"
+                  className="flex-1 bg-slate-200 text-slate-700 py-3 sm:py-4 rounded-xl font-semibold hover:bg-slate-300 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Placing Order...' : 'Place Order'}
                 </button>

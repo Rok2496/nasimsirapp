@@ -101,20 +101,28 @@ export default function SmartLoader({
     return (
       <div className={`flex items-center space-x-3 ${className}`}>
         <div className="relative w-10 h-6">
-          {/* Enhanced AI Thinking Visualization */}
+          {/* Professional AI Thinking Visualization */}
           <div className="absolute inset-0 flex items-center justify-center">
-            {/* Outer ring */}
-            <div className="absolute inset-0 border-2 border-blue-300/30 rounded-full animate-pulse"></div>
-            {/* Middle ring */}
-            <div className="absolute inset-1 border-2 border-purple-400/40 rounded-full animate-ping" style={{ animationDuration: '1.5s' }}></div>
-            {/* Inner core */}
-            <div className="absolute inset-2 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse" style={{ animationDuration: '2s' }}></div>
+            {/* Outer ring with gradient */}
+            <div className="absolute inset-0 border-2 border-transparent rounded-full animate-spin" style={{
+              background: 'conic-gradient(transparent, #3b82f6, #8b5cf6)',
+              mask: 'radial-gradient(black 55%, transparent 56%)'
+            }}></div>
             
-            {/* Orbiting particles */}
+            {/* Inner pulsing core */}
+            <div className="absolute inset-2 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+            
+            {/* Orbiting particles for enhanced effect */}
             <div className="absolute inset-0">
-              <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-spin" style={{ animationDuration: '3s' }}></div>
-              <div className="absolute bottom-0 right-1/4 w-1 h-1 bg-purple-400 rounded-full animate-spin" style={{ animationDuration: '4s', animationDelay: '0.5s' }}></div>
-              <div className="absolute top-1/3 left-0 w-1 h-1 bg-cyan-400 rounded-full animate-spin" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+              <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping" style={{ 
+                animationDuration: '1.5s',
+                transform: 'translate(-50%, -50%)'
+              }}></div>
+              <div className="absolute bottom-0 right-1/4 w-1 h-1 bg-purple-400 rounded-full animate-ping" style={{ 
+                animationDuration: '2s', 
+                animationDelay: '0.5s',
+                transform: 'translate(50%, 50%)'
+              }}></div>
             </div>
           </div>
         </div>
