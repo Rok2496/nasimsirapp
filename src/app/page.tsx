@@ -9,6 +9,24 @@ import FloatingAIAssistant from '@/components/FloatingAIAssistant';
 import ProductImageGallery from '@/components/ProductImageGallery';
 import SmartLoader from '@/components/SmartLoader';
 
+// Determine the API base URL for images and videos
+const getApiBaseUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    // Client-side runtime
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      return process.env.NEXT_PUBLIC_API_URL;
+    }
+    // Default to Render deployment in production
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://nasimsir.onrender.com';
+    }
+  }
+  // Server-side or fallback
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
 export default function Home() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -327,7 +345,7 @@ export default function Home() {
                     }
                   }}
                 >
-                  <source src={`http://localhost:8000${product.video_url}`} type="video/mp4" />
+                  <source src={`${API_BASE_URL}${product.video_url}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 

@@ -8,6 +8,24 @@ interface ProductImageGalleryProps {
   product: Product;
 }
 
+// Determine the API base URL for images
+const getApiBaseUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    // Client-side runtime
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      return process.env.NEXT_PUBLIC_API_URL;
+    }
+    // Default to Render deployment in production
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://nasimsir.onrender.com';
+    }
+  }
+  // Server-side or fallback
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
 export default function ProductImageGallery({ product }: ProductImageGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoadErrors, setImageLoadErrors] = useState<Record<number, boolean>>({});
@@ -46,7 +64,8 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
     );
   }
 
-  const currentImageSrc = `http://localhost:8000${product.images[currentImageIndex]}`;
+  // Use the correct base URL for images
+  const currentImageSrc = `${API_BASE_URL}${product.images[currentImageIndex]}`;
   const hasLoadError = imageLoadErrors[currentImageIndex];
 
   return (
@@ -125,7 +144,8 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
       {product.images.length > 1 && (
         <div className="grid grid-cols-4 gap-3">
           {product.images.map((image, index) => {
-            const imageSrc = `http://localhost:8000${image}`;
+            // Use the correct base URL for thumbnails
+            const imageSrc = `${API_BASE_URL}${image}`;
             const isCurrent = index === currentImageIndex;
             const hasError = imageLoadErrors[index];
             const isLoading = imageLoading[index];
