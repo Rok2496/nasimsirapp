@@ -143,23 +143,23 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent mb-1 sm:mb-2">
                 Shopping Cart
               </h1>
-              <p className="text-slate-600">
+              <p className="text-slate-600 text-sm sm:text-base">
                 {getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'} in your cart
               </p>
             </div>
             <Link
               href="/"
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors text-sm sm:text-base"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Continue Shopping
@@ -167,9 +167,9 @@ export default function CartPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-3 sm:space-y-4">
             {cartItems.map((item) => {
               // Safety check to ensure item and item.product exist
               if (!item || !item.product) {
@@ -178,20 +178,20 @@ export default function CartPage() {
               }
               
               return (
-              <div key={item.product.id} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
-                <div className="flex flex-col md:flex-row gap-6">
+              <div key={item.product.id} className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">
+                <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
                   {/* Product Image */}
-                  <div className="w-full md:w-48 h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center">
+                  <div className="w-full md:w-32 lg:w-48 h-32 lg:h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg sm:rounded-xl flex items-center justify-center">
                     {item.product.images && item.product.images.length > 0 ? (
                       <Image
                         src={`${API_BASE_URL}${item.product.images[0]}`}
                         alt={item.product.name || 'Product image'}
                         width={192}
                         height={192}
-                        className="w-full h-full object-contain rounded-xl"
+                        className="w-full h-full object-contain rounded-lg sm:rounded-xl"
                       />
                     ) : (
-                      <svg className="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-12 h-12 sm:w-16 sm:h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     )}
@@ -199,47 +199,47 @@ export default function CartPage() {
 
                   {/* Product Details */}
                   <div className="flex-1">
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="flex justify-between items-start mb-3 sm:mb-4">
                       <div>
-                        <h3 className="text-xl font-bold text-slate-800 mb-2">{item.product.name || 'Unnamed Product'}</h3>
-                        <p className="text-slate-600 text-sm line-clamp-2">{item.product.description || 'No description available'}</p>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1 sm:mb-2">{item.product.name || 'Unnamed Product'}</h3>
+                        <p className="text-slate-600 text-xs sm:text-sm line-clamp-2">{item.product.description || 'No description available'}</p>
                       </div>
                       <button
                         onClick={() => removeItem(item.product.id)}
-                        className="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors"
+                        className="text-red-500 hover:text-red-700 p-1.5 sm:p-2 rounded-full hover:bg-red-50 transition-colors"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                       </button>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors"
+                          className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                           </svg>
                         </button>
-                        <span className="font-semibold text-lg min-w-[2rem] text-center">{item.quantity || 1}</span>
+                        <span className="font-semibold text-base sm:text-lg min-w-[1.5rem] sm:min-w-[2rem] text-center">{item.quantity || 1}</span>
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors"
+                          className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6" />
                           </svg>
                         </button>
                       </div>
 
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600">
                           ${((item.product.price || 0) * (item.quantity || 1)).toLocaleString()}
                         </div>
-                        <div className="text-sm text-slate-500">
+                        <div className="text-xs sm:text-sm text-slate-500">
                           ${(item.product.price || 0).toLocaleString()} each
                         </div>
                       </div>
@@ -252,51 +252,51 @@ export default function CartPage() {
           </div>
 
           {/* Order Summary */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Price Summary */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
-              <h3 className="text-xl font-bold text-slate-800 mb-4">Order Summary</h3>
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-3 sm:mb-4">Order Summary</h3>
               
-              <div className="space-y-3 mb-6">
+              <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                 <div className="flex justify-between">
-                  <span className="text-slate-600">Subtotal</span>
-                  <span className="font-semibold">${getTotalPrice().toLocaleString()}</span>
+                  <span className="text-slate-600 text-sm sm:text-base">Subtotal</span>
+                  <span className="font-semibold text-sm sm:text-base">${getTotalPrice().toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-600">Shipping</span>
-                  <span className="font-semibold text-green-600">Free</span>
+                  <span className="text-slate-600 text-sm sm:text-base">Shipping</span>
+                  <span className="font-semibold text-green-600 text-sm sm:text-base">Free</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-600">Tax</span>
-                  <span className="font-semibold">Calculated at checkout</span>
+                  <span className="text-slate-600 text-sm sm:text-base">Tax</span>
+                  <span className="font-semibold text-sm sm:text-base">Calculated at checkout</span>
                 </div>
-                <div className="border-t border-slate-200 pt-3">
+                <div className="border-t border-slate-200 pt-2 sm:pt-3">
                   <div className="flex justify-between">
-                    <span className="text-lg font-bold text-slate-800">Total</span>
-                    <span className="text-lg font-bold text-blue-600">${getTotalPrice().toLocaleString()}</span>
+                    <span className="text-base sm:text-lg font-bold text-slate-800">Total</span>
+                    <span className="text-base sm:text-lg font-bold text-blue-600">${getTotalPrice().toLocaleString()}</span>
                   </div>
                 </div>
               </div>
 
               <button 
                 onClick={handleCheckout}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
               >
                 Proceed to Checkout
               </button>
             </div>
 
             {/* Secure Checkout */}
-            <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-200">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-emerald-200">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-3">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-slate-800">Secure Checkout</h4>
+                <h4 className="font-semibold text-slate-800 text-sm sm:text-base">Secure Checkout</h4>
               </div>
-              <p className="text-sm text-slate-600">
+              <p className="text-xs sm:text-sm text-slate-600">
                 Your information is encrypted and secure. We accept all major payment methods.
               </p>
             </div>
@@ -306,129 +306,129 @@ export default function CartPage() {
       
       {/* Checkout Modal */}
       {showCheckout && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-full sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Checkout
               </h2>
               <button
                 onClick={() => setShowCheckout(false)}
-                className="text-slate-400 hover:text-slate-600 p-2"
+                className="text-slate-400 hover:text-slate-600 p-1 sm:p-2"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
             
-            <form onSubmit={handleOrderSubmit} className="space-y-4 sm:space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+            <form onSubmit={handleOrderSubmit} className="space-y-3 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Full Name *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={orderForm.full_name}
                     onChange={(e) => setOrderForm({...orderForm, full_name: e.target.value})}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
+                    className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
                     placeholder="Enter your full name"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Email *</label>
                   <input
                     type="email"
                     required
                     value={orderForm.email}
                     onChange={(e) => setOrderForm({...orderForm, email: e.target.value})}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
+                    className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
                     placeholder="Enter your email"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Phone *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Phone *</label>
                   <input
                     type="tel"
                     required
                     value={orderForm.phone}
                     onChange={(e) => setOrderForm({...orderForm, phone: e.target.value})}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
+                    className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
                     placeholder="Enter your phone number"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">City</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">City</label>
                   <input
                     type="text"
                     value={orderForm.city}
                     onChange={(e) => setOrderForm({...orderForm, city: e.target.value})}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
+                    className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
                     placeholder="Enter your city"
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Address *</label>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Address *</label>
                 <textarea
                   required
                   value={orderForm.address}
                   onChange={(e) => setOrderForm({...orderForm, address: e.target.value})}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
-                  rows={3}
+                  className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
+                  rows={2}
                   placeholder="Enter your full address"
                 ></textarea>
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Country</label>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Country</label>
                 <input
                   type="text"
                   value={orderForm.country}
                   onChange={(e) => setOrderForm({...orderForm, country: e.target.value})}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
+                  className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
                   placeholder="Enter your country"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Special Requirements</label>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Special Requirements</label>
                 <textarea
                   value={orderForm.special_requirements}
                   onChange={(e) => setOrderForm({...orderForm, special_requirements: e.target.value})}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
-                  rows={3}
+                  className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
+                  rows={2}
                   placeholder="Any special requirements or notes"
                 ></textarea>
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Delivery Address</label>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Delivery Address</label>
                 <textarea
                   value={orderForm.delivery_address}
                   onChange={(e) => setOrderForm({...orderForm, delivery_address: e.target.value})}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white"
-                  rows={3}
+                  className="w-full px-2.5 sm:px-4 py-1.5 sm:py-3 border border-slate-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-500 bg-white text-sm sm:text-base"
+                  rows={2}
                   placeholder="Leave blank to use address above"
                 ></textarea>
               </div>
               
               {/* Order Summary in Modal */}
-              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-4 sm:p-6 border border-slate-200">
-                <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4">Order Summary</h3>
-                <div className="space-y-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-slate-200">
+                <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Order Summary</h3>
+                <div className="space-y-1.5 sm:space-y-2">
                   {cartItems.map((item) => (
                     <div key={item.product.id} className="flex justify-between">
-                      <span className="text-slate-600 text-sm sm:text-base">{item.product.name} × {item.quantity}</span>
-                      <span className="font-semibold text-sm sm:text-base">${((item.product.price || 0) * item.quantity).toLocaleString()}</span>
+                      <span className="text-slate-600 text-xs sm:text-sm">{item.product.name} × {item.quantity}</span>
+                      <span className="font-semibold text-xs sm:text-sm">${((item.product.price || 0) * item.quantity).toLocaleString()}</span>
                     </div>
                   ))}
                   <div className="border-t border-slate-300 pt-2 mt-2">
-                    <div className="flex justify-between font-bold text-lg">
+                    <div className="flex justify-between font-bold text-base sm:text-lg">
                       <span>Total</span>
                       <span className="text-blue-600">${getTotalPrice().toLocaleString()}</span>
                     </div>
@@ -436,18 +436,18 @@ export default function CartPage() {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setShowCheckout(false)}
-                  className="flex-1 bg-slate-200 text-slate-700 py-3 sm:py-4 rounded-xl font-semibold hover:bg-slate-300 transition-colors"
+                  className="flex-1 bg-slate-200 text-slate-700 py-2.5 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:bg-slate-300 transition-colors text-sm sm:text-base"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   {isSubmitting ? 'Placing Order...' : 'Place Order'}
                 </button>

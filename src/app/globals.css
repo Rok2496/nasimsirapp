@@ -25,6 +25,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
 }
 
 /* Custom animations */
@@ -279,6 +282,7 @@ body {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Adjust for fixed header */
 }
 
 /* Custom scrollbar */
@@ -439,5 +443,115 @@ html {
   
   .rounded-responsive {
     border-radius: 0.5rem;
+  }
+  
+  /* Prevent text selection issues on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  input, textarea, button {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
+  
+  /* Optimize for mobile touch targets */
+  button, a, input {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Reduce padding on mobile */
+  .mobile-padding-reduced {
+    @apply px-3 py-2;
+  }
+  
+  /* Smaller text on mobile */
+  .mobile-text-smaller {
+    font-size: 0.8rem;
+  }
+  
+  /* Compact spacing on mobile */
+  .mobile-compact {
+    @apply space-y-2;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce motion for better performance on mobile */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Optimize animations for mobile */
+  * {
+    animation-duration: 0.8s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Prevent overscroll on mobile */
+  body {
+    overscroll-behavior: none;
+  }
+  
+  /* Optimize scrolling on mobile */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Smaller container padding on mobile */
+  .container {
+    @apply px-3;
+  }
+  
+  /* Adjust fixed elements for mobile */
+  .mobile-fixed-adjust {
+    @apply bottom-16 right-4;
+  }
+  
+  /* Smaller button sizes on mobile */
+  .btn-mobile-sm {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  /* Compact form elements on mobile */
+  .form-mobile-compact input,
+  .form-mobile-compact textarea,
+  .form-mobile-compact select {
+    @apply py-2 px-3 text-sm;
+  }
+  
+  /* Smaller card padding on mobile */
+  .card-mobile-compact {
+    @apply p-3;
+  }
+}
+
+/* Specific adjustments for iPhone X and newer */
+@supports (-webkit-touch-callout: none) {
+  /* iPhone X+ specific styles */
+  @media (max-width: 812px) and (min-width: 375px) and (min-height: 812px) {
+    .iphone-x-safe-area {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    /* Adjust fixed elements for iPhone X+ notch */
+    .iphone-x-fixed {
+      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+    }
   }
 }
