@@ -15,7 +15,23 @@ import {
   FileItem
 } from '@/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+// Determine the API base URL based on the environment
+const getApiBaseUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    // Client-side runtime
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      return process.env.NEXT_PUBLIC_API_URL;
+    }
+    // Default to Render deployment in production
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://nasimsir.onrender.com';
+    }
+  }
+  // Server-side or fallback
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 class ApiError extends Error {
   constructor(public status: number, message: string) {
